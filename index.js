@@ -4,7 +4,6 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 
 const keys = require('./config/keys');
-const authRouter = require('./routes/auth');
 
 // Middleawares
 
@@ -19,7 +18,8 @@ app.use(cookieSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/auth', authRouter)
+app.use('/auth', require('./routes/auth'));
+app.use('/api', require('./routes/api'));
 
 const PORT = process.env.PORT || 5000;
 

@@ -14,8 +14,4 @@ router.get('/logout', (req, res) => {
     res.send(req.user);
 })
 
-router.get('/checkuser', (req, res) => {
-    res.send(req.user);
-})
-
 module.exports = router;

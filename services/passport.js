@@ -10,7 +10,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(async (id, done) => {
     const user = await User.findById(id);
-    if(user) done(null, user)
+    if (user) done(null, user)
 });
 
 const User = mongoose.model('users');
@@ -23,13 +23,12 @@ passport.use(new GoogleStrategy({
     callbackURL: '/auth/google/callback',
     proxy: true
 }, async (accessToken, refreshToken, profile, done) => {
-    const userExists = await User.findOne({ googleId: profile.id})
-    if(userExists) {
+    const userExists = await User.findOne({ googleId: profile.id })
+    if (userExists) {
         //user already exists
-        done(null, userExists);
-    } else {
-        // create a new user
-        const user = await new User({ googleId: profile.id }).save()
-        done(null, user);
+        return done(null, userExists);
     }
+    // create a new user
+    const user = await new User({ googleId: profile.id }).save()
+    done(null, user);
 }))
