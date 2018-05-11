@@ -5,9 +5,9 @@ import {connect} from 'react-redux'
 import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
-import * as actions from '../actions';
+import SurveyNew from './Surveys/SurveyNew';
 
-const SurveyNew = () => <h2>SurveyNew</h2>
+import * as actions from '../actions';
 
 class App extends Component {
 
