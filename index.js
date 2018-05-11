@@ -9,6 +9,7 @@ const keys = require('./config/keys');
 // Middleawares
 
 mongoose.connect(keys.mongoURI);
+require('./models/Survey');
 
 const app = express();
 
@@ -21,8 +22,7 @@ app.use(cookieSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/auth', require('./routes/auth'));
-app.use('/api', require('./routes/api'));
+app.use('/', require('./routes'));
 
 // Serve client files if Production
 if(process.env.NODE_ENV == 'production') {

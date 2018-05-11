@@ -3,10 +3,6 @@ const router = require('express').Router();
 const stripe = require('stripe')(keys.stripeSecretKey);
 const requireLogin = require('../middlewares/requireLogin');
 
-router.get('/current_user', (req, res) => {
-    res.send(req.user);
-});
-
 router.post('/stripe', requireLogin, async (req, res) => {
     const charge = await stripe.charges.create({
         amount: 5000,
